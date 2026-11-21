@@ -454,6 +454,18 @@ def test_right_crop():
     assert text._spans == [Span(0, 3, "red")]
 
 
+def test_right_crop_zero_and_remove_empty_suffix():
+    text = Text("abc")
+
+    text.right_crop(0)
+    assert str(text) == "abc"
+    assert len(text) == 3
+
+    text.remove_suffix("")
+    assert str(text) == "abc"
+    assert len(text) == 3
+
+
 def test_wrap_3():
     text = Text("foo bar baz")
     lines = text.wrap(Console(), 3)
